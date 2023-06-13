@@ -35,3 +35,33 @@ For example 0 = S and 1 = T.
 So, the combinations will be (0,0,0), (0,0,1), (0,1,0), (1,0,0).
 Then S=2, T=5. There will be 10 triplet combinations.
 */
+
+/*
+An optimized solution
+#include <iostream> 
+  
+ using namespace std; 
+  
+ int countTriplets(int K, int S) 
+ { 
+     int count = 0; 
+     for (int a = 0; a <= K; a++) 
+     { 
+         for (int b = 0; b <= K; b++) 
+         { 
+                 int c=S-(a+b);
+                if(a+b+c==S && c<=K && c>=0) count++;
+             } 
+         } 
+     return count; 
+ } 
+  
+ int main() 
+ { 
+     int K, S; 
+     cin >> K >> S;
+     int result = countTriplets (K, S);
+     cout << result; 
+     return 0;
+}
+*/
