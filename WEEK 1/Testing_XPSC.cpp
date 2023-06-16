@@ -1,47 +1,40 @@
-//https://www.codingninjas.com/codestudio/problems/longest-subarray-with-sum-k_6682399?utm_source=youtube&utm_medium=affiliate&utm_campaign=striver_Arrayproblems
-
-#include <bits/stdc++.h>
+#include <unordered_map>
 using namespace std;
 
-#define fast                          \
-    ios_base::sync_with_stdio(false); \
-    cin.tie(nullptr);                 \
-    cout.tie(nullptr);
+int lenOfLongSubarr(int A[], int n, int K)
+{
+    unordered_map<int, int> prefixSumCount;
+    int prefixSum = 0;
+    int maxLength = 0;
+
+    for (int i = 0; i < n; i++)
+    {
+        prefixSum += A[i];
+
+        // If prefix sum equals K, update maxLength
+        if (prefixSum == K)
+            maxLength = i + 1;
+
+        // If (prefixSum - K) exists in prefixSumCount, update maxLength
+        if (prefixSumCount.find(prefixSum - K) != prefixSumCount.end())
+            maxLength = max(maxLength, i - prefixSumCount[prefixSum - K]);
+
+        // Store the count of prefixSum in prefixSumCount
+        prefixSumCount[prefixSum] = i; 
+    }
+
+    return maxLength;
+}
 
 int main()
 {
-    fast;
+    int A[] = {10, 5, 2, 7, 1, 9};
+    int n = sizeof(A) / sizeof(A[0]);
+    int K = 15;
 
-    int N, K;
-    cin >> N >> K;
-    vector<int> arr(N);
+    int maxLength = lenOfLongSubarr(A, n, K);
 
-    for (int i = 0; i < N; i++)
-        cin >> arr[i];
-
-    int l = 0, r = 0, ans = INT_MIN;
-    long long sum = 0;
-
-    while (r < N)
-    {
-        sum += arr[r];
-
-        if (sum > K)
-        {
-            while (sum > K)
-            {
-                sum -= arr[l];
-                l++;
-            }
-        }
-
-        if (sum == K)
-            ans = max(ans, r - l + 1);
-
-        r++;
-    }
-
-    cout << ans;
+    cout << "Length of the longest subarray with sum " << K << ": " << maxLength << endl;
 
     return 0;
 }
