@@ -1,40 +1,26 @@
-#include <unordered_map>
+#include <bits/stdc++.h>
 using namespace std;
 
-int lenOfLongSubarr(int A[], int n, int K)
-{
-    unordered_map<int, int> prefixSumCount;
-    int prefixSum = 0;
-    int maxLength = 0;
-
-    for (int i = 0; i < n; i++)
-    {
-        prefixSum += A[i];
-
-        // If prefix sum equals K, update maxLength
-        if (prefixSum == K)
-            maxLength = i + 1;
-
-        // If (prefixSum - K) exists in prefixSumCount, update maxLength
-        if (prefixSumCount.find(prefixSum - K) != prefixSumCount.end())
-            maxLength = max(maxLength, i - prefixSumCount[prefixSum - K]);
-
-        // Store the count of prefixSum in prefixSumCount
-        prefixSumCount[prefixSum] = i; 
-    }
-
-    return maxLength;
-}
+#define fast                          \
+    ios_base::sync_with_stdio(false); \
+    cin.tie(nullptr);                 \
+    cout.tie(nullptr);
 
 int main()
 {
-    int A[] = {10, 5, 2, 7, 1, 9};
-    int n = sizeof(A) / sizeof(A[0]);
-    int K = 15;
+    fast;
 
-    int maxLength = lenOfLongSubarr(A, n, K);
+    int N;
+    cin >> N;
 
-    cout << "Length of the longest subarray with sum " << K << ": " << maxLength << endl;
+    string ans;
+
+    for(int i=0; i<9; i++) {
+        string X;
+        cin >> X;
+
+
+    }
 
     return 0;
 }
