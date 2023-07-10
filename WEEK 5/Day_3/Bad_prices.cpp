@@ -44,7 +44,7 @@ int main()
 
         for (int i = 0; i < n; ++i) // this is a complicated part of the solution to understand.
         {
-            while (!stack.empty() && prices[i] < prices[later.top()]) 
+            while (!later.empty() && prices[i] < prices[later.top()])
             {
                 later.pop(); // we pop until the stack is not being empty + the top of the stack
                 // has a value less than the current chosen value. and everytime we increase the
@@ -54,12 +54,12 @@ int main()
 
             later.push(i); // we push everytime every price's index. but before that, we go to a
             // checking procedure with the while loop.
-            //throughout the traversal, if we don't find any value greater than the first pushed
-            //stack item(price[0]), the answer will be 0.
-            //everytime we get a greater value, we go into popping the elements until the current
-            //price is less than the top. and then eventually the current element is pushed in the
-            //stack. if there is less value than the current value, the less value will be present
-            //in the stack as well(before the current value)
+            // throughout the traversal, if we don't find any value greater than the first pushed
+            // stack item(price[0]), the answer will be 0.
+            // everytime we get a greater value, we go into popping the elements until the current
+            // price is less than the top. and then eventually the current element is pushed in the
+            // stack. if there is less value than the current value, the less value will be present
+            // in the stack as well(before the current value)
         }
 
         cout << count << "\n";
