@@ -65,7 +65,7 @@ void solve()
         upper_bound function to find the iterator pointing to the first element in prefix_max that
         is greater than k. This function returns an iterator to the first element that is greater
         than the given value, using a binary search algorithm. In other words, it finds the
-        smallest element in prefix_max that is strictly greater than k(strictly greater means
+        smallest index in prefix_max that is strictly greater than k(strictly greater means
         greater than k but not equivalent to k)
         */
     }
