@@ -1,4 +1,20 @@
 // https://codeforces.com/contest/1855/problem/C2
+//there are three types of arrays. full positive, full negative, and a mixture.
+//if we do prefix sums/ suffix sums(for negatives), we can sort out the operations easily.
+//but for mixture, we have to do other things.
+//suppose, there are mixture:
+//like -2 3 4 -8 23 2
+//we will simply make all the negatives to positives first by the max positive number.
+// now, all the numbers will be positive and finally we will just take the prefix sums and indices.
+//another example: -2 -9 12 -18 17 2 3
+//so, here we can see the negative has the highest absolute value which is 18. we will make all
+//the positives negative and then suffix sums.
+//but what if there are more than 12 negative numbers, and we have only one positive number, which
+// is the maximum absolute value present! should we make all the negatives positive??
+//that will exceed the limit of operations which is 31.
+//so we will make the absolute maximum negative number(minNeg) less than -20. and then we will make
+//the positives to negatives. and finally suffix sums.
+//same goes for positive majority.
 
 #include <bits/stdc++.h>
 using namespace std;
@@ -60,7 +76,7 @@ int main()
                 ops.push_back({i, i + 1});  // suffix sum
         }
 
-        else if (posCnt >= 13)
+        else if (posCnt > 12)
         {
             while (inp[maxPosIdx] < 20)
             {
@@ -78,7 +94,7 @@ int main()
                 ops.push_back({i + 1, i});
         }
 
-        else if (negCnt >= 13)
+        else if (negCnt > 12)
         {
             while (inp[minNegIdx] > -20)
             {
