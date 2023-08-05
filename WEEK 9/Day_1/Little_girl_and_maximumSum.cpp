@@ -1,3 +1,4 @@
+// https://codeforces.com/problemset/problem/276/C
 #include <bits/stdc++.h>
 using namespace std;
 
@@ -25,9 +26,15 @@ int main()
     {
         int l, r;
         cin >> l >> r;
-        freq[l - 1]++; //the array is 0-indexed but the question is 1-indexed.
+        freq[l - 1]++; // the array is 0-indexed but the question is 1-indexed.
         if (r < n)
             freq[r]--;
+    }
+
+    for (auto go : freq)
+    {
+        cout << "For index : " << go.first << " Count/change : " << go.second;
+        cout << "\n";
     }
 
     vector<ll> freqVec(n);
@@ -38,6 +45,12 @@ int main()
             count += freq[i];
         freqVec[i] = count;
     }
+
+    cout << "Counts before sorting: ";
+    for (int i = 0; i < n; i++)
+        cout << freqVec[i] << " ";
+
+    cout << "\n";
 
     sort(freqVec.begin(), freqVec.end(), greater<ll>());
 
