@@ -27,13 +27,19 @@ int main()
 
         else
         {
-            cout << n - 1 << "\n";
-            int l = 2, r = 6;
-            for (int i = 1; i <= n - 1; i++)
+            if (n % 2 == 0)
+                cout << n / 2 << "\n";
+            else
+                cout << n / 2 + 1 << "\n";
+            ll l = 2, r = n*3;
+            while (l <= r)
             {
-                cout << l << " " << r << "\n";
+                if (l == r)
+                    cout << l << " " << l + 1 << "\n";
+                else
+                    cout << l << " " << r << "\n";
                 l += 3;
-                r += 3;
+                r -= 3;
             }
         }
     }
