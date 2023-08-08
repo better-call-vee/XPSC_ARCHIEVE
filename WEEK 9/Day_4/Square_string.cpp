@@ -7,12 +7,16 @@ typedef long long ll;
     cin.tie(nullptr);                 \
     cout.tie(nullptr);
 
-int main()
+int main(int argc, char *argv[])
 {
     fast;
 
     int t;
-    cin >> t;
+
+    if (argc == 2)
+        t = stoi(argv[1]);
+    else
+        cin >> t;
 
     while (t--)
     {
@@ -20,7 +24,7 @@ int main()
         cin >> inp;
 
         int sz = inp.size();
-        if (sz% 2 != 0)
+        if (sz % 2 != 0)
         {
             cout << "NO\n";
             continue;
@@ -28,7 +32,7 @@ int main()
 
         string one = inp.substr(0, sz / 2);
         string two = inp.substr(sz / 2, sz / 2);
-        
+
         if (one == two)
             cout << "YES\n";
         else
