@@ -35,3 +35,15 @@ int main()
 
     return 0;
 }
+
+/*
+Since we must have at least one programmer and one mathematician in each team, the total number of
+teams is limited by the smaller of the two groups. If we run out of one group, we can no longer form
+valid teams.
+
+We also have to consider the total number of students (programmers + mathematicians) and divide it by
+ the size of each team, which is 4. This gives us the maximum number of teams we can form without
+ considering their specific roles.
+
+ we bring these together and respecting both, we take the minimum of them eventually
+*/
