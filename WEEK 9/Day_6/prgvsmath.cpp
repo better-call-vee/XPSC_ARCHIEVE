@@ -1,0 +1,37 @@
+// https://codeforces.com/problemset/problem/1611/B
+/*
+   +----------------------+
+  /                        \
+ /    *   TANVEE009   *     \
+ \  **  I CAN, I WILL  **   /
+  \  +-----------------+   /
+   +----------------------+
+*/
+#include <bits/stdc++.h>
+using namespace std;
+
+typedef long long ll;
+#define fast                          \
+    ios_base::sync_with_stdio(false); \
+    cin.tie(nullptr);                 \
+    cout.tie(nullptr);
+#define line cout << '\n';
+const string nln = "\n";
+
+int main()
+{
+    fast;
+
+    int t;
+    cin >> t;
+
+    while (t--)
+    {
+        int a, b;
+        cin >> a >> b;
+
+        cout << min(min(a, b), (a + b) / 4) << nln;
+    }
+
+    return 0;
+}
