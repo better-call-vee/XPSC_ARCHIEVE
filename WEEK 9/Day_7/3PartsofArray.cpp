@@ -5,6 +5,7 @@
  \  **  I CAN, I WILL  **   /
   \  +-----------------+   /
    +----------------------+
+   https://codeforces.com/problemset/problem/1006/C
 */
 #include <bits/stdc++.h>
 using namespace std;
