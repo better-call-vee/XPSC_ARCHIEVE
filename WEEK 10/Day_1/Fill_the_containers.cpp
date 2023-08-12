@@ -10,7 +10,12 @@ https://onlinejudge.org/index.php?option=com_onlinejudge&Itemid=8&page=show_prob
 #include <bits/stdc++.h>
 using namespace std;
 /*
-I will be given
+I will be given a number of milk vessels. I have to fill containers with milk from the vessels.
+I have to maintain the order of the vessels(can't sort). There is a condition: if I take a vessel
+to fill a container, I have to fill the container with the milk of that vessel no matter what if
+the milk overflow the container. 
+I have to give output the maximum spacious container possible to use maintaining the given maximum
+count of them (m).
 */
 int main()
 {
