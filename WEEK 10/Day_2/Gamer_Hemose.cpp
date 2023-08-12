@@ -27,28 +27,35 @@ int main()
 
     while (t--)
     {
-        int n, H;
+        ll n, H;
         cin >> n >> H;
 
-        vector<int> weapons(n);
+        vector<ll> weapons(n);
         for (int i = 0; i < n; i++)
             cin >> weapons[i];
 
         sort(weapons.begin(), weapons.end());
 
-        int max1 = weapons[n - 1];
-        int max2 = weapons[n - 2];
-        int cnt;
+        ll max1 = weapons[n - 1];
+        ll max2 = weapons[n - 2];
 
         if (H <= max1)
             cout << 1 << "\n";
-        else if (H <= max1 + max2)
+        else if (H <= (max1 + max2))
             cout << 2 << "\n";
         else
         {
-            while (H > 0){
-                
-            }
+            ll cmp = max1 + max2;
+            ll quo = H / cmp;
+            ll left = H % cmp;
+
+            if (left == 0)
+                quo = quo * 2;
+            else if (left > max1)
+                quo = (quo * 2) + 2;
+            else
+                quo = (quo * 2) + 1;
+            cout << quo << "\n";
         }
     }
 
