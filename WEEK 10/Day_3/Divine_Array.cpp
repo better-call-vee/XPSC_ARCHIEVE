@@ -45,7 +45,7 @@ int main()
         {
             for (int i = 0; i < n; i++)
                 arr[i] = freq[arr[i]];
-                
+
             fill(freq.begin(), freq.end(), 0);
             for (int i = 0; i < n; i++)
                 freq[arr[i]]++;
