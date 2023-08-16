@@ -1,0 +1,16 @@
+{
+    "label": "build with debug",
+    "type": "shell",
+    "command": "g++",
+    "args": [
+      "-D__LOCAL__",
+      "-o",
+      "my_program",
+      "main.cpp"
+    ],
+    "group": {
+      "kind": "build",
+      "isDefault": true
+    }
+  }
+  
