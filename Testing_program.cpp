@@ -19,30 +19,19 @@ int main()
         ll m, k, a1, ak;
         cin >> m >> k >> a1 >> ak;
 
-        ll fancy_coins = 0;
-        
-
-        ll coins_k = min(ak, m / k); 
-        m -= (coins_k * k);
-
-        ll coins_1 = min(a1, m);
-        m -= coins_1;
-
-        if (m == 0)
-        {
-            cout << 0 << "\n";
-            continue;
-        }
-
-        fancy_coins += m / k;
-        m %= k;
-
-        if (m == 0)
-            cout << fancy_coins << "\n";
-        else if (m <= a1 && m != 0)
-            cout << fancy_coins + 1 << "\n";
+        if (ak >= m / k)
+            cout << max(0LL, m % k - a1) << '\n';
+            
         else
-            cout << fancy_coins + m << "\n";
+        {
+            m -= ak * k;
+            if (a1 >= m)
+                cout << 0 << '\n';
+            else if (a1 >= m % k)
+                cout << (m - a1 + k - 1) / k << '\n';
+            else
+                cout << (m - a1) / k + (m - a1) % k << '\n';
+        }
     }
 
     return 0;
