@@ -1,21 +1,56 @@
-#include <stdio.h>
+#include <iostream>
+#include <vector>
 
-int main() {
-    int code, amount;
-    float price;
+using namespace std;
 
-    scanf("%d %d", &code, &amount);
+void solve()
+{
+    int n, m, d;
+    cin >> n >> m >> d;
 
-    switch (code) {
-        case 1: price = 4.00; break;
-        case 2: price = 4.50; break;
-        case 3: price = 5.00; break;
-        case 4: price = 2.00; break;
-        case 5: price = 1.50; break;
-        default: return 1;
+    vector<int> s(m + 2);
+    for (int i = 1; i <= m; i++)
+        cin >> s[i];
+
+    s[0] = -d + 1;
+    s[m + 1] = n + 1;
+
+    int sum = 0;
+    for (int i = 1; i < s.size(); i++)
+        sum += (s[i] - s[i - 1] - 1) / d;
+
+    int ans = n + 1;
+    int cnt = 0;
+
+    for (int i = 1; i <= m; i++)
+    {
+        int res = sum;
+        res -= (s[i] - s[i - 1] - 1) / d;
+        res -= (s[i + 1] - s[i] - 1) / d;
+        res += (s[i + 1] - s[i - 1] - 1) / d;
+        res += m - 1;
+
+        if (res < ans)
+        {
+            ans = res;
+            cnt = 1;
+        }
+        else if (res == ans)
+            cnt += 1;
     }
+    cout << ans << " " << cnt << "\n";
+}
 
-    printf("Total: R$ %.2f\n", amount * price);
+int main()
+{
+    ios::sync_with_stdio(false);
+    cin.tie(nullptr);
+
+    int t;
+    cin >> t;
+
+    while (t--)
+        solve();
 
     return 0;
 }
