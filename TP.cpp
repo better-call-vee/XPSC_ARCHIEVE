@@ -1,56 +1,43 @@
 #include <iostream>
 #include <vector>
-
+#include <cmath>
 using namespace std;
-
-void solve()
-{
-    int n, m, d;
-    cin >> n >> m >> d;
-
-    vector<int> s(m + 2);
-    for (int i = 1; i <= m; i++)
-        cin >> s[i];
-
-    s[0] = -d + 1;
-    s[m + 1] = n + 1;
-
-    int sum = 0;
-    for (int i = 1; i < s.size(); i++)
-        sum += (s[i] - s[i - 1] - 1) / d;
-
-    int ans = n + 1;
-    int cnt = 0;
-
-    for (int i = 1; i <= m; i++)
-    {
-        int res = sum;
-        res -= (s[i] - s[i - 1] - 1) / d;
-        res -= (s[i + 1] - s[i] - 1) / d;
-        res += (s[i + 1] - s[i - 1] - 1) / d;
-        res += m - 1;
-
-        if (res < ans)
-        {
-            ans = res;
-            cnt = 1;
-        }
-        else if (res == ans)
-            cnt += 1;
-    }
-    cout << ans << " " << cnt << "\n";
-}
 
 int main()
 {
-    ios::sync_with_stdio(false);
-    cin.tie(nullptr);
+    int n;
+    cin >> n;
+    vector<int> stones(n);
+    int total_weight = 0;
+    for (int i = 0; i < n; i++)
+    {
+        cin >> stones[i];
+        total_weight += stones[i];
+    }
 
-    int t;
-    cin >> t;
+    int minDiff = total_weight; // Initialize to the maximum possible difference
 
-    while (t--)
-        solve();
+    // Iterate through all possible subsets using a bitmask
+    for (int mask = 0; mask < (1 << n); mask++)
+    {
+        int weight_pile1 = 0;
 
+        // Calculate the weight of the first pile based on the bitmask
+        for (int i = 0; i < n; i++)
+        {
+            if (mask & (1 << i))
+            {
+                weight_pile1 += stones[i];
+            }
+        }
+
+        // Calculate the weight of the second pile
+        int weight_pile2 = total_weight - weight_pile1;
+
+        // Update the minimum difference
+        minDiff = min(minDiff, abs(weight_pile1 - weight_pile2));
+    }
+
+    cout << minDiff;
     return 0;
 }
