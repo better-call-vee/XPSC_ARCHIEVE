@@ -1,3 +1,11 @@
+/*
+   +----------------------+
+  /                        \
+ /    *   TANVEE009   *     \
+ \  **  I CAN, I WILL  **   /
+  \  +-----------------+   /
+   +----------------------+
+*/
 #include <bits/stdc++.h>
 using namespace std;
 
@@ -7,32 +15,42 @@ typedef long long ll;
     cin.tie(nullptr);                 \
     cout.tie(nullptr);
 
+bool check(vector<int> &chk, int num, int times)
+{
+    if (chk.size() < times)
+        return false;
+    return chk[times - 1] >= num;
+}
+
 int main()
 {
     fast;
 
     int t;
     cin >> t;
-
     while (t--)
     {
-        ll m, k, a1, ak;
-        cin >> m >> k >> a1 >> ak;
+        int n;
+        cin >> n;
+        vector<int> planks(n);
 
-        if (ak >= m / k)
-            cout << max(0LL, m % k - a1) << '\n';
-            
-        else
+        for (int i = 0; i < n; i++)
+            cin >> planks[i];
+
+        bool hobena = false;
+        for (int i = 0; i < n; i++)
         {
-            m -= ak * k;
-            if (a1 >= m)
-                cout << 0 << '\n';
-            else if (a1 >= m % k)
-                cout << (m - a1 + k - 1) / k << '\n';
-            else
-                cout << (m - a1) / k + (m - a1) % k << '\n';
+            if (!check(planks, i + 1, planks[i]))
+            {
+                hobena = true;
+                break;
+            }
         }
-    }
 
+        if (hobena)
+            cout << "NO\n";
+        else
+            cout << "YES\n";
+    }
     return 0;
 }
