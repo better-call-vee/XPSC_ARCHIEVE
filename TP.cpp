@@ -1,29 +1,27 @@
-#include <bits/stdc++.h>
-using namespace std;
-
-typedef long long ll;
-#define fast                          \
-    ios_base::sync_with_stdio(false); \
-    cin.tie(nullptr);                 \
-    cout.tie(nullptr);
+#include <stdio.h>
 
 int main()
 {
-    fast;
-    int t;
-    cin >> t;
+    int a, b, c;
+    scanf("%d %d %d", &a, &b, &c);
 
-    vector<pair<ll, int>>ins;
-    ll go = 1;
-    ins.push_back({1, 2});
-    prv = 2; 
-    while(go <= 1e18) {
-        go+= 
+    int smallest, middle, largest;
+
+    if (a < b && a < c) {
+        smallest = a;
+        middle = b < c ? b : c;
+        largest = b < c ? c : b;
+    } else if (b < a && b < c) {
+        smallest = b;
+        middle = a < c ? a : c;
+        largest = a < c ? c : a;
+    } else {
+        smallest = c;
+        middle = a < b ? a : b;
+        largest = a < b ? b : a;
     }
-    while (t--)
-    {
-        ll n;
-        cin 
-    }
+
+    printf("%d %d %d", smallest, middle, largest);
+
     return 0;
 }
