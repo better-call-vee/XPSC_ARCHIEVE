@@ -1,27 +1,38 @@
-#include <stdio.h>
+#include <bits/stdc++.h>
+
+using namespace std;
+
+const int T = 100;
 
 int main()
 {
-    int a, b, c;
-    scanf("%d %d %d", &a, &b, &c);
+    int n, m;
+    cin >> n >> m;
 
-    int smallest, middle, largest;
+    int sum = 0;
+    vector<int> t(n), count(T + 1, 0);
+    for (int i = 0; i < n; i++)
+        cin >> t[i];
 
-    if (a < b && a < c) {
-        smallest = a;
-        middle = b < c ? b : c;
-        largest = b < c ? c : b;
-    } else if (b < a && b < c) {
-        smallest = b;
-        middle = a < c ? a : c;
-        largest = a < c ? c : a;
-    } else {
-        smallest = c;
-        middle = a < b ? a : b;
-        largest = a < b ? b : a;
+    for (int i = 0; i < n; i++)
+    {
+        int d = sum + t[i] - m, k = 0;
+        if (d > 0)
+        {
+            for (int j = T; j > 0; j--)
+            {
+                int x = j * count[j];
+                if (d <= x)
+                {
+                    k += (d + j - 1) / j;
+                    break;
+                }
+                k += count[j];
+                d -= x;
+            }
+        }
+        sum += t[i];
+        count[t[i]]++;
+        cout << k << " ";
     }
-
-    printf("%d %d %d", smallest, middle, largest);
-
-    return 0;
 }
