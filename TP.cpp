@@ -1,38 +1,31 @@
 #include <bits/stdc++.h>
-
+ 
 using namespace std;
-
-const int T = 100;
-
-int main()
-{
-    int n, m;
-    cin >> n >> m;
-
-    int sum = 0;
-    vector<int> t(n), count(T + 1, 0);
-    for (int i = 0; i < n; i++)
-        cin >> t[i];
-
-    for (int i = 0; i < n; i++)
-    {
-        int d = sum + t[i] - m, k = 0;
-        if (d > 0)
-        {
-            for (int j = T; j > 0; j--)
-            {
-                int x = j * count[j];
-                if (d <= x)
-                {
-                    k += (d + j - 1) / j;
-                    break;
-                }
-                k += count[j];
-                d -= x;
+ 
+#define int long long
+ 
+int32_t main() {
+    int q;
+    cin >> q;
+    while (q--) {
+        int n;
+        cin >> n;
+        int l = 0, r = min<int>(2e9, 2 * n);
+        while (r - l > 1) {
+            int m = (l + r) >> 1;
+            // m = x + y, answer = x + 2 * y
+            if (m * (m - 1) / 2 + m < n) {
+                l = m;
+            } else {
+                r = m;
             }
         }
-        sum += t[i];
-        count[t[i]]++;
-        cout << k << " ";
+        int y = n - r * (r - 1) / 2;
+        if ((r + 1) * r / 2 <= n) {
+            cout << min(r + y, r + 1 + n - (r + 1) * r / 2) << "\n";
+        } else {
+            cout << r + y << "\n";
+        }
     }
+    return 0;
 }
