@@ -22,7 +22,7 @@ int main()
     int n;
     cin >> n;
 
-    cout << egt(n) << "\n";
+    cout << n*n << "\n";
 
     return 0;
 }
