@@ -1,31 +1,25 @@
 #include <bits/stdc++.h>
- 
 using namespace std;
- 
-#define int long long
- 
-int32_t main() {
-    int q;
-    cin >> q;
-    while (q--) {
-        int n;
-        cin >> n;
-        int l = 0, r = min<int>(2e9, 2 * n);
-        while (r - l > 1) {
-            int m = (l + r) >> 1;
-            // m = x + y, answer = x + 2 * y
-            if (m * (m - 1) / 2 + m < n) {
-                l = m;
-            } else {
-                r = m;
-            }
-        }
-        int y = n - r * (r - 1) / 2;
-        if ((r + 1) * r / 2 <= n) {
-            cout << min(r + y, r + 1 + n - (r + 1) * r / 2) << "\n";
-        } else {
-            cout << r + y << "\n";
-        }
+
+int main()
+{
+    int x, y, z, small, large, media;
+    scanf("%d %d %d", &x, &y, &z);
+    int sum = x + y + z;
+    {
+        if (x < y && x < z)
+            small = x;
+        else if (y < x && y < z)
+            small = y;
+        else if (z < x && z < y)
+            small = z;
+        if (x > y && x > z)
+            large = x;
+        else if (y > x && y > z)
+            large = y;
+        else if (z > x && z > y)
+            large = z;
     }
+    printf("%d %d %d\n", small, (sum - (small + large)), large);
     return 0;
 }
