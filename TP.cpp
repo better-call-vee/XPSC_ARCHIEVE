@@ -1,25 +1,69 @@
+/*
+   +----------------------+
+  /                        \
+ /    *   TANVEE009   *     \
+ \  **  I CAN, I WILL  **   /
+  \  +-----------------+   /
+   +----------------------+
+*/
 #include <bits/stdc++.h>
 using namespace std;
 
+typedef long long ll;
+#define fast                          \
+    ios_base::sync_with_stdio(false); \
+    cin.tie(nullptr);                 \
+    cout.tie(nullptr);
+
 int main()
 {
-    int x, y, z, small, large, media;
-    scanf("%d %d %d", &x, &y, &z);
-    int sum = x + y + z;
+    fast;
+
+    int t;
+    cin >> t;
+
+    while (t--)
     {
-        if (x < y && x < z)
-            small = x;
-        else if (y < x && y < z)
-            small = y;
-        else if (z < x && z < y)
-            small = z;
-        if (x > y && x > z)
-            large = x;
-        else if (y > x && y > z)
-            large = y;
-        else if (z > x && z > y)
-            large = z;
+        int n, a, q;
+        cin >> n >> a >> q;
+
+        string inp;
+        cin >> inp;
+
+        if (n == a)
+        {
+            cout << "YES\n";
+            continue;
+        }
+
+        int fnl = a, mb = a;
+        bool hobei = false;
+        for (int i = 0; i < q; i++)
+        {
+            if (inp[i] == '+')
+            {
+                fnl++;
+                mb++;
+            }
+            else
+            {
+                if (fnl != 0)
+                    fnl--;
+            }
+            if (fnl == n)
+            {
+                hobei = true;
+                break;
+            }
+        }
+
+        if (hobei)
+            cout << "YES\n";
+        else if (mb >= n)
+            cout << "MAYBE\n";
+        else
+            cout << "NO\n";
     }
-    printf("%d %d %d\n", small, (sum - (small + large)), large);
+
     return 0;
 }

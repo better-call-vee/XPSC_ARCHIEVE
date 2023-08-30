@@ -18,13 +18,15 @@ int main()
     {
         int n;
         cin >> n;
-
-        vector<int> arr(n);
-
+        set<int> check;
+        
         for (int i = 0; i < n; i++)
-            cin >> arr[i];
+        {
+            int inp;
+            cin >> inp;
+            check.insert(inp);
+        }
 
-        set<int> check(arr.begin(), arr.end());
         int cmp = check.size();
         if (cmp == n)
             cout << "NO\n";
@@ -47,8 +49,8 @@ When we consider powers of 2, each power of 2 corresponds to a binary number wit
 Note a few characteristics:
 
 Unique Position of 1: Each power of 2 has the '1' bit in a unique position.
-Addition: When you add two distinct powers of 2, the result will not produce any carry in binary 
-arithmetic. This is because you're essentially adding a number with a '1' in one position to another 
+Addition: When you add two distinct powers of 2, the result will not produce any carry in binary
+arithmetic. This is because you're essentially adding a number with a '1' in one position to another
 number with a '1' in a different position, and all other positions contain '0's.
 
 Using the example you provided:
@@ -56,8 +58,8 @@ Using the example you provided:
 2^3 = 8 = 1000 in binary
 Sum = 11000 in binary = 2^4 + 2^3
 
-Now, when you compute the sum of any powers of 2, the resulting binary number will have '1's in 
-exactly those positions corresponding to the powers of 2 you added. No two distinct powers of 2, 
+Now, when you compute the sum of any powers of 2, the resulting binary number will have '1's in
+exactly those positions corresponding to the powers of 2 you added. No two distinct powers of 2,
 when added, will ever give another power of 2.
 
 Why?
