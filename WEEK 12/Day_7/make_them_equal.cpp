@@ -10,9 +10,9 @@
 using namespace std;
 
 typedef long long ll;
-#define fast                          \
-    ios_base::sync_with_stdio(false); \
-    cin.tie(nullptr);                 \
+#define fast                                                                   \
+    ios_base::sync_with_stdio(false);                                          \
+    cin.tie(nullptr);                                                          \
     cout.tie(nullptr);
 
 int main()
@@ -31,42 +31,35 @@ int main()
         cout << 0;
         return 0;
     }
-    bool paisi = false;
-    set<int, greater<int>> go(nums.begin(), nums.end());
-    auto trk = go.begin();
-    trk++;
-    int cmp = *trk, d;
-    for (int i = 1; i <= 100; i++)
+
+    int d = INT_MAX, fake_d = INT_MAX;
+    for (int pnt = 1; pnt <= 100; pnt++)
     {
-        d = abs(cmp - i);
-        int sum = 0;
+        int chk = 0, i = 0;
+        while (chk == 0 and i < n)
+        {
+            chk = abs(pnt - nums[i]);
+            i++;
+        }
         for (int j = 0; j < n; j++)
         {
-            if (nums[j] < i)
-                sum += (nums[j] + d);
-            else if (nums[j] == i)
-                sum += i;
+            int cmp = abs(pnt - nums[j]);
+
+            if (chk != cmp && cmp != 0)
+            {
+                fake_d = INT_MAX;
+                break;
+            }
             else
-                sum += (nums[j] - d);
+                fake_d = chk;
         }
-        if (i == 3)
-        {
-            cout << sum << "\n";
-            cout << cmp << "\n";
-            cout << d << "\n";
-        }
-        if (sum / (i + cmp) == n && sum % (i + cmp) == 0)
-        {
-            paisi = true;
-            d = i;
-            break;
-        }
+        d = min(fake_d, d);
     }
 
-    if (paisi)
-        cout << d;
+    if (d == INT_MAX)
+        cout << -1 << "\n";
     else
-        cout << -1;
+        cout << d << "\n";
 
     return 0;
 }
