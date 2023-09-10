@@ -10,11 +10,7 @@ typedef long long ll;
 int main()
 {
     fast;
-
-#ifdef fast
-    freopen("inp137.txt", "r", stdin);
-    freopen("out137.txt", "w", stdout);
-#endif
+    
     int t;
     cin >> t;
 
