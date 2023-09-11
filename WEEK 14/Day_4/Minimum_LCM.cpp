@@ -24,29 +24,14 @@ int main()
 
     while (t--)
     {
-        int n, a, b;
+        int n, ans = 1;
         cin >> n;
 
-        if (n % 2 == 0)
-            a = b = n / 2;
-        else
-        {
-            a = 1;
-            b = n - 1;
-            ll cmp1 = lcm(a, b);
-            ll cmp2 = 1e18;
-            a = n / 2 - 1;
-            b = n - a;
-            if (a > 0)
-                cmp2 = lcm(a, b);
+        for (int i = 2; i * i <= n; i++)
+            if (n % i == 0)
+                ans = max(ans, n / i);
 
-            if (cmp1 < cmp2)
-            {
-                a = 1;
-                b = n - 1;
-            }
-        }
-        cout << a << " " << b << "\n";
+        cout << ans << " " << n - ans << "\n";
     }
 
     return 0;

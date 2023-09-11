@@ -5,7 +5,7 @@
   +----+-----+
        |
        V
-created: 11th September, 2023 16:21:54 GMT+6
+created: 11th September, 2023 14:27:26 GMT+6
 */
 #include <bits/stdc++.h>
 using namespace std;
@@ -16,37 +16,40 @@ typedef long long ll;
     cin.tie(nullptr);                                                          \
     cout.tie(nullptr);
 
+ll gcd(ll a, ll b)
+{
+    if (b == 0)
+        return a;
+    return gcd(b, a % b);
+}
+
 int main()
 {
     fast;
+
     int t;
     cin >> t;
 
     while (t--)
     {
-        int n, a, b;
+        int n;
         cin >> n;
 
-        if (n % 2 == 0)
-            a = b = n / 2;
-        else
-        {
-            a = 1;
-            b = n - 1;
-            ll cmp1 = lcm(a, b);
-            ll cmp2 = 1e18;
-            a = n / 2 - 1;
-            b = n - a;
-            if (a > 0)
-                cmp2 = lcm(a, b);
+        vector<ll> nums(n);
+        for (int i = 0; i < n; i++)
+            cin >> nums[i];
 
-            if (cmp1 < cmp2)
-            {
-                a = 1;
-                b = n - 1;
-            }
+        ll sum = accumulate(nums.begin(), nums.end(), 0LL), part = 0,
+           maxi = -1e18;
+
+        for (int i = 0; i < n - 1; i++)
+        {
+            part += nums[i];
+            sum -= nums[i];
+            maxi = max(maxi, gcd(part, sum));
         }
-        cout << a << " " << b << "\n";
+
+        cout << maxi << "\n";
     }
 
     return 0;
